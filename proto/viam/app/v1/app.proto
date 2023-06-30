@@ -9,6 +9,11 @@ import "tagger/v1/tagger.proto";
 option go_package = "go.viam.com/api/app/v1";
 
 service AppService {
+  // User
+
+  // Get the current user
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+
   // Organizations
 
   // Create a new organization
@@ -204,6 +209,18 @@ message RobotPartHistoryEntry {
   string robot = 2 [(tagger.v1.tags) = "bson:\"robot\" json:\"robot\""];
   google.protobuf.Timestamp when = 3 [(tagger.v1.tags) = "bson:\"when\" json:\"when\""];
   RobotPart old = 4 [(tagger.v1.tags) = "bson:\"old\" json:\"old\""];
+}
+
+message GetUserRequest {}
+
+message GetUserResponse {
+  string id = 1;
+  string email = 2;
+  string accepted_legal = 3;
+  string name = 4;
+  string family_name = 5;
+  string given_name = 6;
+  string nickname = 7;
 }
 
 message ListOrganizationsRequest {}
